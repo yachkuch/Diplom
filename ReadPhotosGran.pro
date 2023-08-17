@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     database.cpp \
     form_for_color.cpp \
+    logger.cpp \
     main.cpp \
     mainwindow.cpp \
     plot.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
     database.h \
     form_for_color.h \
+    logger.h \
     mainwindow.h \
     plot.h \
     scroll.h \

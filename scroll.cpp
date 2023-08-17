@@ -10,7 +10,7 @@ SCroll::SCroll(QWidget *parent)
 void SCroll::mouseDoubleClickEvent(QMouseEvent *mouse)
 {
     emit(coordinates(mouse->localPos()));
-    qDebug()<<this->x();
+    //qDebug()<<horizontalScrollBar()->value();
     //qDebug()<<mouse->localPos();
 }
 

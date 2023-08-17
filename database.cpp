@@ -1,5 +1,6 @@
 #include "database.h"
 #include <QDebug>
+#include "logger.h"
 
 DataBase::DataBase(QObject *parent) : QObject(parent)
 {
@@ -28,6 +29,19 @@ QPair<int, int> DataBase::getXLimites()
 QPair<int, int> DataBase::getYLimites()
 {
     return YLimitss;
+}
+void DataBase::write_points_from_file(QMap<int, QPointF> USRP, QMap<int, QPointF> Omega)
+{
+    QFile file(QDir::currentPath()+"./base.txt");
+    qDebug()<<QDir::currentPath()+"./base.txt";
+    if(file.open(QIODevice::WriteOnly)){
+        qDebug(logDebug())<<"suka";
+    } else {
+        QMessageBox mb;
+        mb.setText("Файл для записи данных графиков не был открыт");
+        qDebug(logWarning())<<"Файл для записи данных графиков не был открыт";
+        mb.exec();
+    }
 }
 
 QPointF DataBase::Middle(QList<QPointF> points)

@@ -21,6 +21,8 @@ public:
     QPair<int,int> getXLimites();
     QPair<int,int> getYLimites();
 
+    static void write_points_from_file(QMap<int,QPointF> USRP,QMap<int,QPointF> OMega);
+
 private:
 
     QMap<int,QPointF> PointsMapUsrp;

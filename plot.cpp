@@ -281,6 +281,7 @@ void Plot::MakePlot()
     lsOmega->append(LinesAppend(PointsOmega));
     lsUSRP->append(LinesAppend(PointsUSRP));
     lsdiff->append(CalculatePlotdiff(PointsOmega,PointsUSRP));
+    DataBase::write_points_from_file(MapUSRP,MapOmega);
     lsCorellation->append(listCorrel);
 
     ChartOmega->addSeries(lsOmega);
