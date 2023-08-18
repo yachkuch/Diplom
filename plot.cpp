@@ -281,7 +281,7 @@ void Plot::MakePlot()
     lsOmega->append(LinesAppend(PointsOmega));
     lsUSRP->append(LinesAppend(PointsUSRP));
     lsdiff->append(CalculatePlotdiff(PointsOmega,PointsUSRP));
-    DataBase::write_points_from_file(MapUSRP,MapOmega);
+    //DataBase::write_points_from_file(MapUSRP,MapOmega);
     lsCorellation->append(listCorrel);
 
     ChartOmega->addSeries(lsOmega);
@@ -334,7 +334,7 @@ void Plot::MakeScreen(QWidget *widg)
 {
     QPixmap pixmap /*= QPixmap::grabWidget(widg)*/;
     // widg::render(&pixmap);
-
+    DataBase->write_points_from_file(MapUSRP,MapOmega);
     QDir dir(SavePath);
     if(!dir.exists()){
         dir.mkpath(SavePath);

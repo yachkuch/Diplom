@@ -21,7 +21,10 @@ public:
     QPair<int,int> getXLimites();
     QPair<int,int> getYLimites();
 
-    static void write_points_from_file(QMap<int,QPointF> USRP,QMap<int,QPointF> OMega);
+    void write_points_from_file(QMap<int,QPointF> USRP,QMap<int,QPointF> OMega);
+
+    QString getNameForWritingFromFile() const;
+    void setNameForWritingFromFile(const QString &newNameForWritingFromFile);
 
 private:
 
@@ -31,6 +34,8 @@ private:
     QPointF RightTopPoint;
     QPair<int, int> XLimits;
     QPair<int,int> YLimitss;
+
+    QString NameForWritingFromFile;
 
     /****************Функции***************/
     /**

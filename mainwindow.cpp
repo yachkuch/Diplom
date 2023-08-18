@@ -5,6 +5,8 @@
 #include <QMenuBar>
 #include <QFileDialog>
 
+#include "logger.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -247,7 +249,7 @@ void MainWindow::SelectionMemory()
         mb.setText("Отсутствует данное изображение");
         mb.exec();
     }
-
+    get_name();
 }
 
 void MainWindow::MakingWorkWindow()
@@ -892,6 +894,19 @@ void MainWindow::rooleMainWindow(bool)
     }
 }
 
+QString MainWindow::get_name()
+{
+    QString returnName = PairImagesPath.first;
+    QStringList list = returnName.split("/");
+    QStringList retV =list.last().split(".");
+    returnName.clear();
+    returnName.append(list.value(list.size()-2));
+    returnName.append("/");
+    returnName.append(retV.first());
+    Data_Base->setNameForWritingFromFile(returnName);
+    return returnName;
+}
+
 void MainWindow::ConnectorForColorParser(bool)
 {
     QObject *sen = sender();
@@ -971,6 +986,7 @@ void MainWindow::FileDialogOpen(bool)
         mb.setText("Не обнаружен файл конфигурации сохранения");
         mb.exec();
     }
+    get_name();
     emit(clearDB());
 }
 

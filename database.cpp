@@ -33,15 +33,39 @@ QPair<int, int> DataBase::getYLimites()
 void DataBase::write_points_from_file(QMap<int, QPointF> USRP, QMap<int, QPointF> Omega)
 {
     QFile file(QDir::currentPath()+"./base.txt");
-    qDebug()<<QDir::currentPath()+"./base.txt";
-    if(file.open(QIODevice::WriteOnly)){
-        qDebug(logDebug())<<"suka";
+    if(file.open(QIODevice::WriteOnly | QFile::Append | QFile::Text)){
+        qDebug(logInfo())<<"Пара изображений проанализирована, дописываем точки";
+        QTextStream strem(&file);
+        strem<<&NameForWritingFromFile<<"\n";
+        strem<<"USPR \n";
+        QMapIterator<int,QPointF> iter(USRP);
+        while (iter.hasNext()) {
+            iter.next();
+            strem<<iter.value().x()<<" "<<iter.value().y()<<" \n";
+        }
+        strem<<"OMEGA \n";
+        QMapIterator<int,QPointF> iter2(Omega);
+        while (iter2.hasNext()) {
+            iter2.next();
+            strem<<iter2.value().x()<<" "<<iter2.value().y()<<" \n";
+        }
+        file.close();
     } else {
-        QMessageBox mb;
-        mb.setText("Файл для записи данных графиков не был открыт");
-        qDebug(logWarning())<<"Файл для записи данных графиков не был открыт";
-        mb.exec();
+       // QMessageBox mb;
+       // mb.setText("Файл для записи данных графиков не был открыт");
+       // qDebug(logWarning())<<"Файл для записи данных графиков не был открыт";
+       // mb.exec();
     }
+}
+
+QString DataBase::getNameForWritingFromFile() const
+{
+    return NameForWritingFromFile;
+}
+
+void DataBase::setNameForWritingFromFile(const QString &newNameForWritingFromFile)
+{
+    NameForWritingFromFile = newNameForWritingFromFile;
 }
 
 QPointF DataBase::Middle(QList<QPointF> points)
