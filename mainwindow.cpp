@@ -224,7 +224,7 @@ void MainWindow::SelectionMemory()
 
     connect(this,SIGNAL(clearDB()) , Data_Base , SLOT(ClearDatabase()));
 
-    QFile fileWithSavePath("C:/Projects/Diplom/ReadPhotosGran/config/SavingImagePath.txt");
+    QFile fileWithSavePath("C:/Users/Никита/Desktop/Projects/DiplomMain/ReadPhotosGran/config/SavingImagePath.txt");
     fileWithSavePath.open(QIODevice::ReadOnly);
     if(fileWithSavePath.isOpen()){
         PatHByImaheGlon = fileWithSavePath.readLine();
@@ -752,7 +752,7 @@ void MainWindow::Sender() // проверить данное логическо�
 
 void MainWindow::ParseColor(int scenaryWOrk)
 {
-    QString path("C:/Projects/Diplom/ReadPhotosGran/config/");
+    QString path("C:/Users/Никита/Desktop/Projects/DiplomMain/ReadPhotosGran/config/");
     QDir dir(path);
     if(!dir.exists()){
         dir.mkpath(path);
@@ -961,7 +961,7 @@ void MainWindow::FormingInform()
 
 void MainWindow::FileDialogOpen(bool)
 {
-    QString filename = QFileDialog::getOpenFileName(this,tr("Open File"),"C:/Projects/Diplom/ReadPhotosGran/EperimentsData");
+    QString filename = QFileDialog::getOpenFileName(this,tr("Open File"),"C:/Users/Никита/Desktop/Projects/DiplomMain/ReadPhotosGran/EperimentsData");
     if(filename.isEmpty()) return;
     scene->removeItem(PixmapItem);
     delete PixmapItem;

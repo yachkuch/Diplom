@@ -332,8 +332,8 @@ void Plot::MakePlot()
 
 void Plot::MakeScreen(QWidget *widg)
 {
-    QPixmap pixmap /*= QPixmap::grabWidget(widg)*/;
-    // widg::render(&pixmap);
+    QPixmap pixmap(widg->size()) /*= QPixmap::grabWidget(widg)*/;
+    widg->render(&pixmap);
     DataBase->write_points_from_file(MapUSRP,MapOmega);
     QDir dir(SavePath);
     if(!dir.exists()){
@@ -342,11 +342,17 @@ void Plot::MakeScreen(QWidget *widg)
 
     QString fullath(SavePath);
     fullath.append(NameImage);
-
+    QStringList newList = fullath.split(".");
+    fullath.clear();
+    int a = newList.size();
+    for(int i =0;i<a-1; i++){
+        fullath.append(newList.value(i));
+    }
+    fullath.append(".png");
     QFile File(fullath);
     if(File.open(QIODevice::WriteOnly)){
         qDebug()<<"Файл для сохранения открылся";
-        pixmap.save(&File,"PNG");
+        pixmap.save(&File);
     } else {
         qDebug()<<"Файл для сохранение не был открыт"<<fullath;
         QMessageBox MB;

@@ -36,7 +36,7 @@ void DataBase::write_points_from_file(QMap<int, QPointF> USRP, QMap<int, QPointF
     if(file.open(QIODevice::WriteOnly | QFile::Append | QFile::Text)){
         qDebug(logInfo())<<"Пара изображений проанализирована, дописываем точки";
         QTextStream strem(&file);
-        strem<<&NameForWritingFromFile<<"\n";
+        strem<<NameForWritingFromFile<<"\n";
         strem<<"USPR \n";
         QMapIterator<int,QPointF> iter(USRP);
         while (iter.hasNext()) {
