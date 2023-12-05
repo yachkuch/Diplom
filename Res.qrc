@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>ButtonInformation.qml</file>
-    </qresource>
-</RCC>

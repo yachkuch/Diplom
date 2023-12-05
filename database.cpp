@@ -33,6 +33,7 @@ QPair<int, int> DataBase::getYLimites()
 void DataBase::write_points_from_file(QMap<int, QPointF> USRP, QMap<int, QPointF> Omega)
 {
     QFile file(QDir::currentPath()+"./base.txt");
+    auto  a = QDir::currentPath();
     if(file.open(QIODevice::WriteOnly | QFile::Append | QFile::Text)){
         qDebug(logInfo())<<"Пара изображений проанализирована, дописываем точки";
         QTextStream strem(&file);

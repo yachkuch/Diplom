@@ -224,14 +224,14 @@ void MainWindow::SelectionMemory()
 
     connect(this,SIGNAL(clearDB()) , Data_Base , SLOT(ClearDatabase()));
 
-    QFile fileWithSavePath("C:/Users/Никита/Desktop/Projects/DiplomMain/ReadPhotosGran/config/SavingImagePath.txt");
+    QFile fileWithSavePath("C:/Projects/DiplomMain/ReadPhotosGran/config/SavingImagePath.txt");
     fileWithSavePath.open(QIODevice::ReadOnly);
     if(fileWithSavePath.isOpen()){
         PatHByImaheGlon = fileWithSavePath.readLine();
         qDebug()<<PatHByImaheGlon;
         fileWithSavePath.close();
     } else {
-        qDebug()<<QString("Не обнаружен файл конфигурации сохранения C:/Projects/Diplom/ReadPhotosGran/config/SavingImagePath.txt");
+        //qDebug()<<QString("Не обнаружен файл конфигурации сохранения/* C:\Users\Никита\Desktop\Projects\DiplomMain\ReadPhotosGran\config\SavingImagePath.txt*/");
 
         QMessageBox mb;
         mb.setText("Не обнаружен файл конфигурации сохранения");
@@ -752,7 +752,7 @@ void MainWindow::Sender() // проверить данное логическо�
 
 void MainWindow::ParseColor(int scenaryWOrk)
 {
-    QString path("C:/Users/Никита/Desktop/Projects/DiplomMain/ReadPhotosGran/config/");
+    QString path("C:/Projects/DiplomMain/ReadPhotosGran/config/");
     QDir dir(path);
     if(!dir.exists()){
         dir.mkpath(path);
@@ -961,7 +961,7 @@ void MainWindow::FormingInform()
 
 void MainWindow::FileDialogOpen(bool)
 {
-    QString filename = QFileDialog::getOpenFileName(this,tr("Open File"),"C:/Users/Никита/Desktop/Projects/DiplomMain/ReadPhotosGran/EperimentsData");
+    QString filename = QFileDialog::getOpenFileName(this,tr("Open File"),"C:/Projects/DiplomMain/ReadPhotosGran/EperimentsData");
     if(filename.isEmpty()) return;
     scene->removeItem(PixmapItem);
     delete PixmapItem;
@@ -974,7 +974,7 @@ void MainWindow::FileDialogOpen(bool)
     PairImagesPath.second = MakeSecondPath(filename);
     PixmapItem = scene->addPixmap(*image);
     PlotWidget->setDirforSave(filename);
-    QFile fileWithSavePath("C:/Projects/Diplom/ReadPhotosGran/config/SavingImagePath.txt");
+    QFile fileWithSavePath("C:/Projects/DiplomMain/ReadPhotosGran/config/SavingImagePath.txt");
     fileWithSavePath.open(QIODevice::WriteOnly);
     if(fileWithSavePath.isOpen()){
         fileWithSavePath.write(filename.toUtf8());
